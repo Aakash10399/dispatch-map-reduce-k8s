@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dispatcher
+  labels:
+    app: dispatcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dispatcher
+  template:
+    metadata:
+      labels:
+        app: dispatcher
+    spec:
+      containers:
+      - name: dispatcher
+        image: aakash10399/dispatcher:latest
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - mountPath: "/datafiles/"
+          name: datafilesvolume
+      volumes:
+        - name: datafilesvolume
+          persistentVolumeClaim:
+            claimName: datafiles-claim

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordcount
+  labels:
+    app: wordcount
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: wordcount
+  template:
+    metadata:
+      labels:
+        app: wordcount
+    spec:
+      containers:
+      - name: wordcount
+        image: aakash10399/wordcount:latest
+        ports:
+        - containerPort: 5001
+        volumeMounts:
+        - mountPath: "/datafiles/"
+          name: datafilesvolume
+      volumes:
+        - name: datafilesvolume
+          persistentVolumeClaim:
+            claimName: datafiles-claim

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dispatcher-svc
+spec:
+  selector:
+    app: dispatcher
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
