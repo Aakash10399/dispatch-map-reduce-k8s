@@ -5,3 +5,4 @@
 * Map component - Wordcount - contains only the API implementation of the mapping task
 * Sample input file - data.in
 * Project documents
+* Install Minikube for local testing
